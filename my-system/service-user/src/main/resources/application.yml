@@ -1,0 +1,12 @@
+server:
+  port: 8201
+
+spring:
+  application:
+    name: service-user
+#服务注册
+eureka:
+  client:
+    #注册地址
+    serviceUrl:
+      defaultZone: http://localhost:8101/eureka/
