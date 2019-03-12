@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.caiRanSystem.dao.LoginDao">
+
+    <select id="login" parameterType="java.lang.String" resultType="com.caiRanSystem.entity.sys.User">
+        SELECT *
+        FROM sys_user a
+        WHERE a.userName = #{userName}
+          AND a.password = #{password}
+    </select>
+
+    <insert id="addLoginLog" parameterType="com.caiRanSystem.entity.sys.LoginLog">
+        INSERT INTO sys_log_login (userId, userAgent, ip, loginTime, token)
+        VALUE (#{userId}, #{userAgent}, #{ip}, #{loginTime}, #{token})
+    </insert>
+
+    <update id="logoutLog" parameterType="com.caiRanSystem.entity.sys.LoginLog">
+        UPDATE sys_log_login
+        SET logoutTime = #{logoutTime}
+        WHERE token = #{token}
+          AND userId = #{userId};
+    </update>
+</mapper>   

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.9.0.min.js"></script>
+    <style>
+        .test {
+            width: 300px;
+            word-break: break-all;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    </style>
+</head>
+<body>
+<p class="test2" style="">
+    js控制字符串显示行数js控制字符串显jsjsjsjsjjssjsjsjsjsj示行数js控制 字符串显示行数js控制字符串显示行数js控制字符串显示行数
+    js控制字符串显示行数 js控制字符串显示行数</p>
+
+<p class="test">
+    js控制字符串显示行数js控制字符串显jsjsjsjsjjssjsjsjsjsj示行数js控制 字符串显示行数js控制字符串显示行数js控制字符串显示行数
+    js控制字符串显示行数 js控制字符串显示行数</p>
+<p class="test">
+    js控制字符串显示行数js控制字符串显jsjsjsjsjjssjsjsjsjsj示行数js控制 字符串显示行数js控制字符串显示行数js控制字符串显示行数
+    js控制字符串显示行数 js控制字符串显示行数</p>
+<p class="test">
+    js控制字符串显示行数js控制字符串显jsjsjsjsjjssjsjsjsjsj示行数js控制 字符串显示行数js控制字符串显示行数js控制字符串显示行数
+    js控制字符串显示行数 js控制字符串显示行数</p>
+<p class="test">
+    js控制字符串显示行数js控制字符串显jsjsjsjsjjssjsjsjsjsj示行数js控制 字符串显示行数js控制字符串显示行数js控制字符串显示行数
+    js控制字符串显示行数 js控制字符串显示行数</p>
+
+
+<script type="text/javascript">
+    function setRowOmit() {
+        var name = "test";//标签  class
+        var omit = 0;//省略号长度
+        var row = 3;//行数
+        var note = "...";//省略字符
+        var testText = "省略";//测试省略字符宽度（中文） //1个测试省略字符=2个省略字符(英)或1个省略字符(中)
+        var isInTitle=false;//是否把内容放到title
+
+        var ps = $("." + name);
+        var width = ps.css('width');
+        if (!omit) {
+            $("body").append($("<span id='omitRuler' class='"+name+"'></span>"));
+            var omitRuler = $("#omitRuler");
+            omitRuler.text(testText);
+            omitRuler.addClass(name);
+            omit = omitRuler[0].offsetWidth;
+            omitRuler.remove();
+        }
+        var cssLineHeight = ps.css('line-height');
+        if (cssLineHeight === "normal") {
+            console.log("没有设置行高;请设置 line-height: ?px");
+            return;
+        }
+        var lineHeight = cssLineHeight.substring(0, cssLineHeight.length - 2);
+        ps.css('width', (width.substring(0, width.length - 2) - omit / row) + "px");
+        console.log("ps:===>", ps);
+        for (var i = 0; i < ps.length; i++) {
+           if(isInTitle) ps[i].title = ps[i].innerText;
+            var arr = ps[i].innerText.split("");
+            while (ps[i].scrollHeight >= lineHeight * row) {
+                ps[i].innerHTML = arr.join('');
+                arr.pop();
+            }
+            ps[i].innerHTML += note;
+        }
+        ps.css('width', width);
+    }
+
+    setRowOmit();
+
+
+</script>
+</body>
+</html>
