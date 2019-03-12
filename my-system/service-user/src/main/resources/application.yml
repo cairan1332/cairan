@@ -4,9 +4,12 @@ server:
 spring:
   application:
     name: service-user
+
 #服务注册
 eureka:
   client:
     #注册地址
     serviceUrl:
       defaultZone: http://localhost:8101/eureka/
+
+spring.zipkin.base-url: http://localhost:8501

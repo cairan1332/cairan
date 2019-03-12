@@ -2,18 +2,19 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8101/eureka/
+
 server:
   port: 8401
 
 spring:
   application:
-    name: zuul
+    name: server_zuul
+
+  main:
+    allow-bean-definition-overriding: true
+
 
 zuul:
   routes:
-    api-a:
-      path: /api-a/**
-      serviceId: service-ribbon
-    api-b:
-      path: /api-b/**
-      serviceId: feign
+    path: /api-b/**
+    serviceId: feign

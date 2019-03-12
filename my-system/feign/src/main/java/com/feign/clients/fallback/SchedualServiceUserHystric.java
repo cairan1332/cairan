@@ -15,6 +15,6 @@ public class SchedualServiceUserHystric implements SchedualServiceUser {
 
     @Override
     public String login() {
-        return "登录错误";
+        return "                                                     ";
     }
 }
